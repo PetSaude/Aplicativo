@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PetSaúde</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Configurações</string>
+    <string name="title_activity_contato">Contato</string>
+    <string name="title_activity_teste">teste</string>
+    <string name="title_activity_editar_email">EditarEmailAct</string>
+    <string name="title_activity_editar_senha">EditarSenhaAct</string>
+    <string name="cifra">
+<![CDATA[
+        <h1>%1$s</h1>
+        <h2>%2$s</h2>
+        <br>%3$s</br>
+        ]]>
+    </string>
+    <string name="title_activity_activity_drawer">PetSaúde</string>
+    <string name="menu_principal">Menu Principal</string>
+    <string name="sair">Sair</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_menu">PetSaúde</string>
+    <string name="lista_cifras_act">Minhas Cifras</string>
+
+
+    <string name="title_section1">Editar Dados</string>
+    <string name="title_section2">Sobre</string>
+    <string name="title_section3">Sair</string>
+    <string name="title_activity_galeria">Galeria de Cifras</string>
+    <string name="title_activity_clinica_maps">Mapa de Clinicas</string>
+
+    <string name="raca_prompt">Raça</string>
+
+    <string-array name="raca_array">
+        <item> - </item>
+        <item>Labrador</item>
+        <item>Pitbull</item>
+        <item>Hotweiller</item>
+        <item>Chihuahua</item>
+    </string-array>
+
+
+    <string name="vacina_prompt">Vacina</string>
+    <string-array name="vacina_array">
+        <item> - </item>
+        <item>BCG</item>
+        <item>ALERGIA</item>
+        <item>RAIVA</item>
+        <item>TÉTANO</item>
+    </string-array>
+
+
+    <string name="medicamento_prompt">Medicamento</string>
+
+    <string-array name="medicamento_array">
+        <item> - </item>
+        <item>VERME</item>
+        <item>CARRAPATO</item>
+        <item>ALERGIA</item>
+    </string-array>
+
+
+    <string name="title_activity_clinica_detalhe">ClinicaDetalhe</string>
+    <string name="title_activity_perfil">PerfilAct</string>
+
+</resources>

@@ -1,0 +1,116 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView3"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:foregroundGravity="center"
+        android:layout_gravity="top">
+
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:layout_width="66dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Nome:"
+            android:id="@+id/textViewNome"
+            android:textSize="15dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextNome"
+            android:inputType="textPersonName" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Raça:"
+            android:id="@+id/textViewRaca"
+            android:textSize="15dp" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerRaca"
+            android:spinnerMode="dropdown"
+            android:entries="@array/raca_array"
+            android:prompt="@string/raca_prompt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Data de Nascimento:"
+            android:id="@+id/textViewDataNasc"
+            android:textSize="15dp" />
+
+        <EditText
+            android:layout_width="122dp"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/editTextDataNasc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Peso (kg):"
+            android:id="@+id/textViewPeso"
+            android:textSize="15dp"
+            android:visibility="visible" />
+
+        <EditText
+            android:layout_width="81dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editTextPeso" />
+
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SALVAR"
+            android:id="@+id/buttonSalvar"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="#d6f13d37"
+            android:textColor="#fff"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="70dip"
+android:paddingTop="5dip"
+android:paddingBottom="5dip"
+android:orientation="vertical">
+
+<RelativeLayout
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/nome_clinica"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:text="CLINICA"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nome_animal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NOME ANIMAL"  />
+
+            <TextView
+                android:id="@+id/horario_consulta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HORARIO"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:id="@+id/status_consulta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STATUS"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+</LinearLayout>
