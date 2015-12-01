@@ -1,7 +1,9 @@
 package com.petsaude.usuario.gui;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -85,6 +87,23 @@ public class LoginAct extends Activity {
                 startActivity(j);
             }
         });
+    }
+    private class Sincronizar extends AsyncTask<Void,Void,Void>{
+        private ProgressDialog progressDialog = new ProgressDialog(LoginAct.this);
+        @Override
+        protected void onPreExecute() {
+            progressDialog.setMessage("carregando..");
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+        }
     }
 
 }

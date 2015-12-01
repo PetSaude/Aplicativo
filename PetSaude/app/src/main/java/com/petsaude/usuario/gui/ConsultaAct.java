@@ -38,7 +38,11 @@ public class ConsultaAct extends AppCompatActivity implements AdapterView.OnItem
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        negocio.atualizaClinica(Session.getUsuarioLogado());
+        try {
+            negocio.atualizaClinica(Session.getUsuarioLogado());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (Session.getUsuarioLogado().getListaConsultas().size() == 0){
             final TextView mensagem = (TextView) findViewById(R.id.mensagem);

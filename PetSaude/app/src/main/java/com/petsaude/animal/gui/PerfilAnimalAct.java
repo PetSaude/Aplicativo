@@ -35,7 +35,11 @@ public class PerfilAnimalAct extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        petSelecionado = AnimalDAO.getInstance().getAnimal(petSelecionado.getId());
+        try {
+            petSelecionado = AnimalDAO.getInstance().getAnimal(petSelecionado.getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         setTitle(petSelecionado.getNome());
@@ -70,7 +74,7 @@ public class PerfilAnimalAct extends AppCompatActivity {
             peso.append(""+petSelecionado.getPeso()+"kg");
         }
 
-        if ((petSelecionado.getProntuario())==null){
+        if ((petSelecionado.getProntuario()).isEmpty()){
             prontuario.append(" - não possui");
         }else{
             prontuario.append(""+petSelecionado.getProntuario());

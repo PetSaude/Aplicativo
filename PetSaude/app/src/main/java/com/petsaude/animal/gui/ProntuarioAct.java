@@ -92,7 +92,11 @@ public class ProntuarioAct extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String i = " - "+prontuario.getText().toString()+ "\n\n Vacinas - "+vacina.getSelectedItem()+"\n\n Medicamentos - "+medicamento.getSelectedItem();
-                AnimalDAO.getInstance().atualizaProntuario(i, animal.getId());
+                try {
+                    AnimalDAO.getInstance().atualizaProntuario(i, animal.getId());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 Toast.makeText(ProntuarioAct.this,"Prontuário atualizado com sucesso!",Toast.LENGTH_LONG).show();
                 Intent act = new Intent(ProntuarioAct.this, MedicoAct.class);
                 startActivity(act);

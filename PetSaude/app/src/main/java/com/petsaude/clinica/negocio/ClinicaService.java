@@ -22,7 +22,7 @@ public class ClinicaService {
         this.clinicaDAO.setContextUp(context);
     }
 
-    public Clinica getClinica(int id){
+    public Clinica getClinica(int id) throws Exception {
         return clinicaDAO.getClinica(id);
     }
 

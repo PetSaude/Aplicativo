@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -228,7 +229,7 @@ public class MenuActivity extends android.support.v7.app.AppCompatActivity {
     public void adicionaMarcadores(){
         for (Clinica i : Session.getListaClinicas()){
             mMap.addMarker(new MarkerOptions().
-                    position(new LatLng(i.getLatitude(), i.getLongitude())).
+                    position(new LatLng(Double.parseDouble(i.getLatitude()),Double.parseDouble(i.getLongitude()))).
                     icon(BitmapDescriptorFactory.fromResource(R.drawable.clinica_marker)).snippet(i.getId()+""));
         }
     }
@@ -247,9 +248,19 @@ public class MenuActivity extends android.support.v7.app.AppCompatActivity {
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override public boolean onMarkerClick(Marker marker) {
             int id = new Integer(marker.getSnippet());
-            Session.setClinicaSelecionada(negocio.getClinica(id));
-            Session.getClinicaSelecionada().setVagas(vagaNegocio.getVagas(Session.getClinicaSelecionada()));
-            Intent i = new Intent(MenuActivity.this, ClinicaDetalhe.class);
+                try {
+                    Session.setClinicaSelecionada(negocio.getClinica(id));
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Log.d("aqui","aqui");
+                try {
+                    Session.getClinicaSelecionada().setVagas(vagaNegocio.getVagas(Session.getClinicaSelecionada()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Intent i = new Intent(MenuActivity.this, ClinicaDetalhe.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
             return false;

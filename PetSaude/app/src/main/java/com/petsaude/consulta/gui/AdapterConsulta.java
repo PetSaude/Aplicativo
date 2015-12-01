@@ -57,8 +57,8 @@ public class AdapterConsulta extends BaseAdapter {
 
         view = mInflater.inflate(R.layout.menu_vaga_list_view, null);
 
-        ((TextView) view.findViewById(R.id.nome_clinica)).setText(nomeAnimal);
-        ((TextView) view.findViewById(R.id.nome_animal)).setText(nomeClinica);
+        ((TextView) view.findViewById(R.id.nome_clinica)).setText(nomeClinica);
+        ((TextView) view.findViewById(R.id.nome_animal)).setText(nomeAnimal);
         ((TextView) view.findViewById(R.id.horario_consulta)).setText(item.getData());
         ((TextView) view.findViewById(R.id.status_consulta)).setText(item.getStatus());
 

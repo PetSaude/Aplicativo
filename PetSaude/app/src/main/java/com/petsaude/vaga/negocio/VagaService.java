@@ -23,12 +23,12 @@ public class VagaService {
         this.vagaDAO.setContextUp(context);
     }
 
-    public ArrayList<Vaga> getVagas(Clinica clinica){
+    public ArrayList<Vaga> getVagas(Clinica clinica) throws Exception {
         return vagaDAO.retrieveVagas(clinica);
     }
 
 
-    public void updateVaga(Usuario usuarioLogado, Animal animal, Vaga vaga){
+    public void updateVaga(Usuario usuarioLogado, Animal animal, Vaga vaga) throws Exception {
         vagaDAO.updateVaga(usuarioLogado,animal,vaga);
     }
 }

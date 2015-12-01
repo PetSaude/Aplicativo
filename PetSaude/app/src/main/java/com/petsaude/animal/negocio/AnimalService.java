@@ -24,17 +24,16 @@ public class AnimalService {
     public void adicionar(Animal animal) throws Exception {
         StringBuilder message = new StringBuilder();
 
-        if(animalDAO.existeAnimal(animal)){
+        if(animalDAO.existeAnimal(animal,Session.getUsuarioLogado())){
             message.append("Você já possui um animal cadastrado com esse nome.");}
         if(message.length() > 0){throw new Exception(
                 message.toString());}
         else {
-            animalDAO.adicionarAnimal(animal);
-            animalDAO.retrieveAnimais(Session.getUsuarioLogado());
+            animalDAO.adicionarAnimal(animal,Session.getUsuarioLogado());
+            animalDAO.buscarTodosAnimais(Session.getUsuarioLogado());
         }
     }
-
-    public Animal getAnimal(int id){
+    public Animal getAnimal(int id) throws Exception {
         Animal animal = animalDAO.getAnimal(id);
         if ( animal != null){
             return animal;
@@ -42,7 +41,6 @@ public class AnimalService {
             return null;
         }
     };
-
 
     public boolean validarNome(String nome) {
         boolean validadeNome = false;

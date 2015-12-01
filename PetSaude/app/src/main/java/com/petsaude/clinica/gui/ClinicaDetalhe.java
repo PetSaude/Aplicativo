@@ -78,7 +78,11 @@ public class ClinicaDetalhe extends AppCompatActivity implements com.petsaude.ut
                 if ((!vagas.getSelectedItem().equals("A clinica não tem vagas disponíveis")) & (!animais.getSelectedItem().equals("Você não possui animais cadastrados"))){
                     Animal animal = Session.getUsuarioLogado().getListaAnimais().get(animais.getSelectedItemPosition());
                     Vaga vaga = Session.getClinicaSelecionada().getVagas().get(vagas.getSelectedItemPosition());
-                    vagaNegocio.updateVaga(Session.getUsuarioLogado(), animal, vaga);
+                    try {
+                        vagaNegocio.updateVaga(Session.getUsuarioLogado(), animal, vaga);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     Toast.makeText(ClinicaDetalhe.this,"Consulta Marcada com Sucesso",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(ClinicaDetalhe.this,MenuActivity.class);
                     startActivity(i);

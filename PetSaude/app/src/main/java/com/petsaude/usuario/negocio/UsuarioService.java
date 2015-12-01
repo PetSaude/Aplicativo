@@ -44,7 +44,7 @@ public class UsuarioService {
         if ( usuario != null) {
             Session.setUsuarioLogado(usuario);
             clinicaDAO.retrieveClinicas();
-            animalDAO.retrieveAnimais(usuario);
+            animalDAO.buscarTodosAnimais(usuario);
             vagaDAO.retrieveVagas(usuario);
             retorno = true;
         }else if(medico != null) {
@@ -61,11 +61,11 @@ public class UsuarioService {
     return retorno;
     }
 
-    public void atualizaClinica(Usuario usuario){
+    public void atualizaClinica(Usuario usuario) throws Exception {
         vagaDAO.retrieveVagas(usuario);
     }
 
-    public void atualizaClinica(Medico usuario){
+    public void atualizaClinica(Medico usuario) throws Exception {
         vagaDAO.retrieveVagas(usuario);
     }
 
@@ -101,7 +101,7 @@ public class UsuarioService {
         if(message.length() > 0){throw new Exception(message.toString());}
         else{
             retorno = true;
-            usuarioDAO.alterarSenha(senha);
+            usuarioDAO.alterarSenha(senha,Session.getUsuarioLogado());
             Session.usuarioLogado.setSenha(senha);
         }
         return retorno;
@@ -115,7 +115,7 @@ public class UsuarioService {
         if(message.length() > 0){throw new Exception(message.toString());}
         else{
             retorno = true;
-            usuarioDAO.alterarEmail(email);
+            usuarioDAO.alterarEmail(email,Session.getUsuarioLogado());
             Session.usuarioLogado.setEmail(email);
         }
         return retorno;

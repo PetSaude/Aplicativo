@@ -324,44 +324,7 @@ public class PetSaudeSQLiteHelper extends SQLiteOpenHelper  {
         dataBase.execSQL(getTableDatabaseAnimalCreate());
         dataBase.execSQL(getTableDatabaseClinicaCreate());
         dataBase.execSQL(TABLE_DATABASE_VAGA_CREATE);
-        dataBase.execSQL("insert into usuario (login,nome,senha,email) values ('math','math','math','math@math.com')");
 
-        dataBase.execSQL("insert into usuario (login,nome,senha,email,CRMV) values ('DrUehara','Dr Uehara','math','mattth@math.com',1234)");
-        dataBase.execSQL("insert into usuario (login,nome,senha,email,CRMV) values ('DrHouse','Dr House','math','maasdth@math.com',123456)");
-        dataBase.execSQL("insert into usuario (login,nome,senha,email,CRMV) values ('DrIgor','Dr nigga','math','maasdth@haath.com',32111)");
-
-        dataBase.execSQL("insert into vaga(id_clinica,id_medico,data,status) values (2,2,'26/11/2015 12:00 as 13:00','DISPONIVEL')");
-        dataBase.execSQL("insert into vaga(id_clinica,id_medico,data,status) values (2,3,'25/11/2015 14:00 as 14:40','DISPONIVEL')");
-        dataBase.execSQL("insert into vaga(id_clinica,id_medico,data,status) values (2,2,'03/12/2015 14:00 as 13:00','DISPONIVEL')");
-        dataBase.execSQL("insert into vaga(id_clinica,id_medico,data,status) values (2,3,'02/12/2015 14:00 as 14:40','DISPONIVEL')");
-
-
-
-
-        dataBase.execSQL("insert into clinica (nome,endereco,latitude,longitude) values " +
-                "('Pet Dream Clinica veterinária','rua das ruas',-8.191706,-34.924004)," +
-                "('Amigo Bixo','rua das ruas',-8.195558,-34.920701)," +
-                "('Mundo Animal','rua das ruas',-8.2216625,-34.9334426)," +
-                "('Mary Rações','rua das ruas',-8.2216625,-34.9334426)," +
-                "('JJ Rações','rua das ruas',-8.2205582,-34.9337859)," +
-                "('Bom pra cachorro','rua das ruas',-8.2176274,-34.9282069)," +
-                "('Bicho Mania Pet Shop','rua das ruas',-8.2166717,-34.927649)," +
-                "('CliniPet','rua das ruas',-8.2170752,-34.9256535)," +
-                "('Star Dog','rua das ruas',-8.2049858,-34.9230318)," +
-                "('Pet Ninas Clinica Veterinaria','rua das ruas',-8.2007208,-34.9230015)," +
-                "('Cantinho do Pet','rua das ruas',-8.1982279,-34.9316196)," +
-                "('Clinica Bixos','rua das ruas',-8.1918002,-34.9271892)," +
-                "('Pet Shop Bixos','rua das ruas',-8.1881658,-34.9243367)," +
-                "('Super Amigos Pet','rua das ruas',-8.1881658,-34.9243367)," +
-                "('Mundo do criador','rua das ruas',-8.1861534,-34.9221821)," +
-                "('Cão delivery Pet Shop','rua das ruas',-8.1861534,-34.9221821)," +
-                "('Planet Dog','rua das ruas',-8.1851621,-34.9211807)," +
-                "('Cão delivery Pet Shop','rua das ruas',-8.1793951,-34.9297079)," +
-                "('Belos Cães','rua das ruas',-8.1667321,-34.9274042)," +
-                "('Dog House Pet Shop','rua das ruas',-8.1667321,-34.9274042)," +
-                "('Pet Show','rua das ruas',-8.1667321,-34.9274042)," +
-                "('Cao Qri','rua das ruas',-8.1714273,-34.9258095)," +
-                "('Fiel Companheiro','rua das ruas',-8.1650978,-34.9211747)");
     }
 
     @Override

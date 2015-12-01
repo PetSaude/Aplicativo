@@ -79,7 +79,11 @@ public class MedicoAct extends AppCompatActivity implements AdapterView.OnItemCl
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        negocio.atualizaClinica(Session.getMedicoLogado());
+        try {
+            negocio.atualizaClinica(Session.getMedicoLogado());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (Session.getMedicoLogado().getListaConsultas().size() == 0){
             final TextView mensagem = (TextView) findViewById(R.id.consultas_text);
@@ -100,7 +104,11 @@ public class MedicoAct extends AppCompatActivity implements AdapterView.OnItemCl
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
     {
         if (adapterListView.getItem(arg2).getStatus().equals("CONFIRMADO")){
-            ProntuarioAct.setAnimal(negocioAnimal.getAnimal(adapterListView.getItem(arg2).getIdAnimal()));
+            try {
+                ProntuarioAct.setAnimal(negocioAnimal.getAnimal(adapterListView.getItem(arg2).getIdAnimal()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             if (ProntuarioAct.getAnimal() != null){
                 Intent i = new Intent(MedicoAct.this, ProntuarioAct.class);
