@@ -38,7 +38,7 @@ public class UsuarioDAO extends DAO {
         envelope.setOutputSoapObject(existeEmail);
         envelope.implicitTypes = true;
 
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         try {
             http.call(getUsuarioServiceNamespace() + getExisteEmail(), envelope);
             SoapPrimitive resposta = (SoapPrimitive) envelope.getResponse();
@@ -80,45 +80,7 @@ public class UsuarioDAO extends DAO {
         envelopeSoapObject(alterarSenha,URL,getAlterarSenha());
 
     }
-    /**
-    public Usuario login(String login, String senha){
-        Usuario condition = null;
-        open();
-        Cursor mCursor = getDatabase().rawQuery("SELECT * FROM " + database.getTableNameUsuario() + " WHERE login=? AND senha=?", new String[]{login,senha});
-        if (((mCursor != null) && (mCursor.getCount() > 0))) {
-                mCursor.moveToFirst();
-                Usuario novoUsuario = new Usuario();
-                novoUsuario.setID(mCursor.getInt(mCursor.getColumnIndex(database.getIdUsuario())));
-                novoUsuario.setLogin(mCursor.getString(mCursor.getColumnIndex(database.getLogin())));
-                novoUsuario.setNome(mCursor.getString(mCursor.getColumnIndex(database.getNomeUsuario())));
-                novoUsuario.setEmail(mCursor.getString(mCursor.getColumnIndex(database.getEmail())));
-                novoUsuario.setSenha(mCursor.getString(mCursor.getColumnIndex(database.getSenha())));
-                condition = novoUsuario;
-                int i = mCursor.getInt(mCursor.getColumnIndex("CRMV"));
-                String spaks = i+"";
-                if (!spaks.equals("") & !spaks.equals("0")){
-                    condition = null;
-                }
-                close();
-        }
-        return condition;
-    }
 
-    public boolean existeUsuario(Usuario usuario){
-                boolean condition = false;
-                open();
-                Cursor mCursor = getDatabase().rawQuery("SELECT * FROM " + database.getTableNameUsuario() + " WHERE login=?", new String[]{(usuario.getLogin())});
-                if (mCursor != null) {
-                        if (mCursor.getCount() > 0) {
-                                condition = true;
-                            }
-                   }
-                close();
-                return condition;
-    }
-
-
-    **/
     public boolean existeUsuario(Usuario usuario) {
         SoapObject usuarioObject = new SoapObject(getUsuarioServiceNamespace(), getExisteUsuario());
         usuarioObject.addSoapObject(usuarioSoapObject(usuario));
@@ -126,7 +88,7 @@ public class UsuarioDAO extends DAO {
         envelope.setOutputSoapObject(usuarioObject);
         envelope.implicitTypes = true;
 
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         try {
             http.call(getUsuarioServiceNamespace() + getExisteUsuario(), envelope);
             SoapPrimitive resposta = (SoapPrimitive) envelope.getResponse();
@@ -157,7 +119,7 @@ public class UsuarioDAO extends DAO {
         envelope.implicitTypes = true;
 
 
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         try {
             http.call(getUsuarioServiceNamespace() + getLOGIN(), envelope);
             SoapObject resposta = (SoapObject) envelope.getResponse();
@@ -170,14 +132,12 @@ public class UsuarioDAO extends DAO {
                 usr.setLogin(resposta.getProperty("login").toString());
                 usr.setID(Integer.parseInt(resposta.getPropertyAsString("id")));
             }
-            else{
-               return usr;
-           }
+
 
 
 
         } catch (Exception e) {
-            throw new Exception("ops!,não foi possivel estabelecer a conexão");
+            e.printStackTrace();
 
 
         }

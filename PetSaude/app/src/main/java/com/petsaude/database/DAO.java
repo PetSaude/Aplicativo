@@ -226,12 +226,13 @@ public abstract class  DAO {
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(soapObject);
         envelope.implicitTypes = true;
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         try {
             http.call(getUsuarioServiceNamespace()+ metodo, envelope);
 
         }catch (Exception e){
-            throw new Exception("ops!,não foi possivel acessar o servidor");
+           // throw new Exception("ops!,não foi possivel acessar o servidor");
+            e.printStackTrace();
         }
     }
     public SoapObject usuarioSoapObject(Usuario usuario){

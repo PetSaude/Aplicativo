@@ -54,7 +54,7 @@ public class AnimalDAO extends DAO{
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(adicionarAnimal);
         envelope.implicitTypes = true;
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         try {
             http.call(getAnimalServiceNamespace()+ getInserirAnimal(), envelope);
 
@@ -68,7 +68,7 @@ public class AnimalDAO extends DAO{
         AnimalPorID.addProperty(getIdlProperty(id));
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(AnimalPorID);
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         try {
             http.call(getAnimalServiceNamespace() + getBUSCAR_ANIMAl_POR_ID(), envelope);
             SoapObject resposta = (SoapObject) envelope.getResponse();
@@ -104,7 +104,7 @@ public class AnimalDAO extends DAO{
             envelope.setOutputSoapObject(existeAnimal);
             envelope.implicitTypes = true;
 
-            HttpTransportSE http = new HttpTransportSE(URL);
+            HttpTransportSE http = new HttpTransportSE(URL,80000);
             try {
                 http.call(getAnimalServiceNamespace() + getExisteAnimal(), envelope);
                 SoapPrimitive resposta = (SoapPrimitive) envelope.getResponse();
@@ -119,7 +119,7 @@ public class AnimalDAO extends DAO{
         retrieveAnimal.addSoapObject(usuarioSoapObject(usuario));
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(retrieveAnimal);
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         envelope.implicitTypes = true;
         try {
             http.call(getAnimalServiceNamespace() + getBuscarTodosAnimais(), envelope);
@@ -156,7 +156,7 @@ public class AnimalDAO extends DAO{
         envelope.setOutputSoapObject(atualizaProntuario);
         envelope.implicitTypes = true;
 
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         try {
             http.call(getAnimalServiceNamespace() + getAtualizaProntuario(), envelope);
         } catch (IOException e) {

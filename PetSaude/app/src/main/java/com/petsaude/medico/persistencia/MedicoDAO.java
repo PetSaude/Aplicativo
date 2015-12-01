@@ -47,7 +47,7 @@ public class MedicoDAO extends DAO {
         getMedico.addProperty(idPro);
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(getMedico);
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         envelope.implicitTypes = true;
         try {
             http.call(getClinicaNamespace() + getGetMedico(), envelope);
@@ -85,7 +85,7 @@ public class MedicoDAO extends DAO {
         envelope.implicitTypes = true;
 
 
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         try {
             http.call(getMedicoNamespace() + getLoginMedico(), envelope);
             SoapObject resposta = (SoapObject) envelope.getResponse();

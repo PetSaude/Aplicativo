@@ -48,13 +48,14 @@ public class ClinicaDAO extends DAO {
         SoapObject retrieveClinicas = new SoapObject(getClinicaNamespace(),getRetrieveClinicas());
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(retrieveClinicas);
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         envelope.implicitTypes = true;
         try {
             http.call(getClinicaNamespace() + getRetrieveClinicas(), envelope);
-            Vector<SoapObject> resposta = (Vector<SoapObject>) envelope.getResponse();
+            SoapObject resposta = (SoapObject) envelope.bodyIn;
+            for (int i = 0; i < resposta.getPropertyCount(); ++i) {
+                SoapObject aux = (SoapObject) resposta.getProperty(i);
             if(resposta!=null){
-                for (SoapObject aux : resposta) {
                     Clinica clinica = new Clinica();
                     clinica.setId(Integer.parseInt(aux.getProperty("id").toString()));
                     clinica.setNome(aux.getProperty("nome").toString());
@@ -84,7 +85,7 @@ public class ClinicaDAO extends DAO {
         retrieveClinicas.addProperty(prop);
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(retrieveClinicas);
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         envelope.implicitTypes = true;
         try {
             http.call(getClinicaNamespace() + getGetClinica(), envelope);

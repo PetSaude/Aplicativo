@@ -54,7 +54,7 @@ public class VagaDAO extends DAO {
         retrieveVagas.addSoapObject(clinicaSoapObject(clinica));
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(retrieveVagas);
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         envelope.implicitTypes = true;
         try {
             http.call(getVagaNamespace() + getRetrieveVagasClinica(), envelope);
@@ -93,7 +93,7 @@ public class VagaDAO extends DAO {
         retrieveVagas.addSoapObject(usuarioSoapObject(usuario));
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(retrieveVagas);
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         envelope.implicitTypes = true;
         try {
             http.call(getVagaNamespace() + getRetrieveVagasUsuario(), envelope);
@@ -110,7 +110,7 @@ public class VagaDAO extends DAO {
                vaga.setIdClinica(Integer.parseInt(aux.getPrimitivePropertyAsString("idClinica")));
                vaga.setIdCliente(Integer.parseInt(aux.getPrimitivePropertyAsString("idUsuario")));
                vaga.setData(aux.getPrimitivePropertyAsString("data"));
-               vaga.setIdClinica(Integer.parseInt(aux.getPrimitivePropertyAsString("idClinica")));
+               vaga.setIdAnimal(Integer.parseInt(aux.getPrimitivePropertyAsString("idAnimal")));
                vaga.setMedico(medico);
                vaga.setStatus(aux.getProperty("status").toString());
                vagas.add(vaga);
@@ -133,7 +133,7 @@ public class VagaDAO extends DAO {
         retrieveVagas.addSoapObject(medicoSoapObject(usuario));
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(retrieveVagas);
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         envelope.implicitTypes = true;
         try {
             http.call(getVagaNamespace() + getRetrieveVagasMedico(), envelope);
@@ -176,7 +176,7 @@ public class VagaDAO extends DAO {
         updateVaga.addSoapObject(vagaSoapObject(vaga));
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(updateVaga);
-        HttpTransportSE http = new HttpTransportSE(URL);
+        HttpTransportSE http = new HttpTransportSE(URL,80000);
         envelope.implicitTypes = true;
         try {
             http.call(getVagaNamespace() + getUpdateVaga(), envelope);
