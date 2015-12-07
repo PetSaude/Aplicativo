@@ -1,6 +1,8 @@
 package com.petsaude.clinica.gui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,8 +16,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.petsaude.R;
 import com.petsaude.animal.dominio.Animal;
+import com.petsaude.animal.negocio.AnimalService;
+import com.petsaude.clinica.dominio.Clinica;
 import com.petsaude.usuario.dominio.Session;
 import com.petsaude.usuario.gui.MenuActivity;
 import com.petsaude.usuario.negocio.UsuarioService;
@@ -36,6 +43,8 @@ public class ClinicaDetalhe extends AppCompatActivity implements com.petsaude.ut
 
     private static String dataSelecionada;
     final VagaService vagaNegocio = new VagaService(ClinicaDetalhe.this);
+    private AnimalService animalService;
+    private VagaService vagaService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +78,7 @@ public class ClinicaDetalhe extends AppCompatActivity implements com.petsaude.ut
             }
         });
 
-        createSpinnerAnimais();
-        createSpinnerVaga();
+        new Sincronizar().execute();
 
         consulta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,5 +133,35 @@ public class ClinicaDetalhe extends AppCompatActivity implements com.petsaude.ut
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, vagas);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+    }
+    private class Sincronizar extends AsyncTask<Void,Void,Void> {
+        private ProgressDialog progressDialog = new ProgressDialog(ClinicaDetalhe.this);
+        @Override
+        protected void onPreExecute() {
+            progressDialog.setMessage("carregando dados...");
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            animalService= new AnimalService(ClinicaDetalhe.this);
+            vagaService = new VagaService(ClinicaDetalhe.this);
+            animalService.buscarTodosAnimais(Session.getUsuarioLogado());
+            try {
+                Session.getClinicaSelecionada().setVagas(vagaService.getVagas(Session.getClinicaSelecionada()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void Void) {
+            progressDialog.dismiss();
+            createSpinnerAnimais();
+            createSpinnerVaga();
+
+        }
+
     }
 }

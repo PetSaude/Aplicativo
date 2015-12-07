@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * Created by Matheus Uehara on 10/11/2015.
+ * Created by Rodolfo Bispo on 10/11/2015.
  */
 public class ClinicaDAO extends DAO {
 

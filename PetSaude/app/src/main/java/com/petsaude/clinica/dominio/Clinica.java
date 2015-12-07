@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by Matheus Uehara on 10/11/2015.
  */
-public class Clinica {
+public class    Clinica {
 
     private int id;
     private String nome;

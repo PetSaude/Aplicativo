@@ -21,6 +21,8 @@ import com.petsaude.usuario.negocio.UsuarioService;
 public class LoginAct extends Activity {
 
     final UsuarioService negocio = new UsuarioService(LoginAct.this);
+    private String login;
+    private String senha;
 
     public void limpaDados(EditText login,EditText senha){
         login.setText("");
@@ -44,51 +46,32 @@ public class LoginAct extends Activity {
 
         }
         setContentView(R.layout.activity_login);
-
-        final EditText login = (EditText) findViewById(R.id.login);
-        final EditText senha = (EditText) findViewById(R.id.senha);
+       final EditText edtlogin = (EditText) findViewById(R.id.login);
+       final EditText edtSenha = (EditText) findViewById(R.id.senha);
         final Button entrar = (Button) findViewById(R.id.entrar);
         final Button registrar = (Button) findViewById(R.id.registrar);
+
 
 
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    if (negocio.login(login.getText().toString(), senha.getText().toString()) ==true) {
-                        if (Session.getUsuarioLogado()!= null){
-                            Toast.makeText(LoginAct.this, "Logado com sucesso.", Toast.LENGTH_SHORT).show();
-                            limpaDados(login, senha);
-                            Intent i = new Intent();
-                            i.setClass(LoginAct.this, MenuActivity.class);
-                            startActivity(i);
-                        }
-                        if (Session.getMedicoLogado()!= null){
-                            Toast.makeText(LoginAct.this, "Logado com sucesso.", Toast.LENGTH_SHORT).show();
-                            limpaDados(login, senha);
-                            Intent i = new Intent();
-                            i.setClass(LoginAct.this, MedicoAct.class);
-                            startActivity(i);
-                        }
-                    }
-                    ;
-                } catch (Exception e) {
-                    Toast.makeText(LoginAct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-                login.requestFocus();
+                login = edtlogin.getText().toString();
+                senha = edtSenha.getText().toString();
+                new Sincronizar().execute();
+
             }
         });
 
         registrar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                limpaDados(login, senha);
                 Intent j = new Intent();
                 j.setClass(LoginAct.this, CadastroAct.class);
                 startActivity(j);
             }
         });
     }
-    private class Sincronizar extends AsyncTask<Void,Void,Void>{
+    private class Sincronizar extends AsyncTask<Void,Void,String>{
         private ProgressDialog progressDialog = new ProgressDialog(LoginAct.this);
         @Override
         protected void onPreExecute() {
@@ -97,12 +80,33 @@ public class LoginAct extends Activity {
         }
 
         @Override
-        protected Void doInBackground(Void... params) {
-            return null;
+        protected String doInBackground(Void... params) {
+            String mensagem =null;
+            try {
+                if(negocio.login(login, senha) ==true){
+                    if (Session.getUsuarioLogado()!= null){
+                        mensagem = "bem vindo!";
+                        Intent i = new Intent();
+                        i.setClass(LoginAct.this, MenuActivity.class);
+                        startActivity(i);
+                    }
+                    if (Session.getMedicoLogado()!= null){
+                        Intent i = new Intent();
+                        mensagem = "bem vindo!";
+                        i.setClass(LoginAct.this, MedicoAct.class);
+                        startActivity(i);
+                    }
+                }
+            } catch (Exception e) {
+                mensagem = e.getMessage();
+            }
+            return mensagem;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(String result) {
+            progressDialog.dismiss();
+            Toast.makeText(LoginAct.this,result, Toast.LENGTH_SHORT).show();
         }
     }
 

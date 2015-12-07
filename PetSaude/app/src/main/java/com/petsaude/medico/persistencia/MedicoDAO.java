@@ -19,7 +19,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 
 /**
- * Created by Matheus Uehara on 17/11/2015.
+ * Created by Rodolfo Bispo on 17/11/2015.
  */
 public class MedicoDAO extends DAO {
 

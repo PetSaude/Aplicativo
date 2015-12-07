@@ -25,6 +25,13 @@ public class ClinicaService {
     public Clinica getClinica(int id) throws Exception {
         return clinicaDAO.getClinica(id);
     }
+    public void retrieveClinicas(){
+        try{
+            clinicaDAO.retrieveClinicas();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
 }

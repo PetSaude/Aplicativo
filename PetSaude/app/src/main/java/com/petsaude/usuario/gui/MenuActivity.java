@@ -2,9 +2,11 @@ package com.petsaude.usuario.gui;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -34,6 +36,7 @@ import com.petsaude.animal.gui.CadastroAnimal;
 import com.petsaude.clinica.dominio.Clinica;
 import com.petsaude.clinica.gui.ClinicaDetalhe;
 import com.petsaude.clinica.negocio.ClinicaService;
+import com.petsaude.medico.gui.MedicoAct;
 import com.petsaude.usuario.dominio.Session;
 import com.petsaude.usuario.negocio.UsuarioService;
 import com.petsaude.vaga.negocio.VagaService;
@@ -227,11 +230,7 @@ public class MenuActivity extends android.support.v7.app.AppCompatActivity {
     }
 
     public void adicionaMarcadores(){
-        for (Clinica i : Session.getListaClinicas()){
-            mMap.addMarker(new MarkerOptions().
-                    position(new LatLng(Double.parseDouble(i.getLatitude()),Double.parseDouble(i.getLongitude()))).
-                    icon(BitmapDescriptorFactory.fromResource(R.drawable.clinica_marker)).snippet(i.getId()+""));
-        }
+            new Sincronizar().execute();
     }
 
     public void localizaUsuario(){
@@ -254,12 +253,6 @@ public class MenuActivity extends android.support.v7.app.AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Log.d("aqui","aqui");
-                try {
-                    Session.getClinicaSelecionada().setVagas(vagaNegocio.getVagas(Session.getClinicaSelecionada()));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
                 Intent i = new Intent(MenuActivity.this, ClinicaDetalhe.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
@@ -275,5 +268,31 @@ public class MenuActivity extends android.support.v7.app.AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return true;
+    }
+    private class Sincronizar extends AsyncTask<Void,Void,Void> {
+        private ProgressDialog progressDialog = new ProgressDialog(MenuActivity.this);
+        @Override
+        protected void onPreExecute() {
+            progressDialog.setMessage("carregando clinicas...");
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            negocio.retrieveClinicas();
+
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void Void) {
+            progressDialog.dismiss();
+            for (Clinica i : Session.getListaClinicas()){
+                mMap.addMarker(new MarkerOptions().
+                        position(new LatLng(Double.parseDouble(i.getLatitude()),Double.parseDouble(i.getLongitude()))).
+                        icon(BitmapDescriptorFactory.fromResource(R.drawable.clinica_marker)).snippet(i.getId()+""));
+            }
+
+        }
+
     }
 }

@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import com.petsaude.animal.dominio.Animal;
 import com.petsaude.animal.persistencia.AnimalDAO;
 import com.petsaude.usuario.dominio.Session;
+import com.petsaude.usuario.dominio.Usuario;
 
 /**
  * Created by alessondelmiro on 11/10/15.
@@ -53,6 +54,13 @@ public class AnimalService {
             }
         }
         return validadeNome;
+    }
+    public void buscarTodosAnimais(Usuario usuario){
+        try{
+            animalDAO.buscarTodosAnimais(usuario);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

@@ -5,11 +5,9 @@ import android.util.Log;
 
 import com.petsaude.animal.dominio.Animal;
 import com.petsaude.clinica.dominio.Clinica;
-import com.petsaude.consulta.persistencia.ConsultaDAO;
 import com.petsaude.database.DAO;
 import com.petsaude.database.PetSaudeSQLiteHelper;
 import com.petsaude.medico.dominio.Medico;
-import com.petsaude.medico.persistencia.MedicoDAO;
 import com.petsaude.usuario.dominio.Session;
 import com.petsaude.usuario.dominio.Usuario;
 import com.petsaude.vaga.dominio.Vaga;
@@ -18,16 +16,12 @@ import com.petsaude.vaga.dominio.Vaga;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpResponseException;
 import org.ksoap2.transport.HttpTransportSE;
-import org.xmlpull.v1.XmlPullParserException;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Vector;
 
 /**
- * Created by Matheus Uehara on 17/11/2015.
+ * Created by Rodolfo Bispo on 17/11/2015.
  */
 public class VagaDAO extends DAO {
 
@@ -43,8 +37,6 @@ public class VagaDAO extends DAO {
 
     private static PetSaudeSQLiteHelper database = getDataBaseHelper();
 
-
-    private static ConsultaDAO consultaDAO = ConsultaDAO.getInstance();
 
     private static final String URL = "http://7211a1d455b74b45b921350403a1fecd.cloudapp.net/PetSaudeWebservice/services/VagaService?wsdl";
 

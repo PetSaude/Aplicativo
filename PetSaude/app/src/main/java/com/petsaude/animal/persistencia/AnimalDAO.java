@@ -25,7 +25,7 @@ import java.util.Vector;
 
 
 /**
- * Created by alessondelmiro on 11/10/15.
+ * Created by Rodolfo Bispo on 11/10/15.
  */
 public class AnimalDAO extends DAO{
 

@@ -40,17 +40,16 @@ public class UsuarioService {
         StringBuilder message = new StringBuilder();
         boolean retorno = false;
         Usuario usuario = usuarioDAO.login(login, senha);
-        Medico medico = medicoDAO.login(login, senha);
         if ( usuario != null) {
             Session.setUsuarioLogado(usuario);
-            clinicaDAO.retrieveClinicas();
             animalDAO.buscarTodosAnimais(usuario);
-            vagaDAO.retrieveVagas(usuario);
-            retorno = true;
-        }else if(medico != null) {
+            return true;
+        }
+        Medico medico = medicoDAO.login(login, senha);
+        if(medico != null) {
             Session.setMedicoLogado(medico);
             vagaDAO.retrieveVagas(medico);
-            retorno = true;
+            return true;
         }
         else if (login.length() <= 0) {message.append("Insira o Usuário/Email.");
         } else if (senha.length() <= 0) {message.append("Insira a Senha.");
